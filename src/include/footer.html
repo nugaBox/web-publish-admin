@@ -1,5 +1,50 @@
-<footer id="site-footer">
-  <div class="container">
-    <p class="mb-0">&copy; 2025 NUGABOX. All rights reserved.</p>
+      </main>
+    </div>
   </div>
-</footer>
+</div>
+
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/script.js"></script>
+<script>
+/* 사이드바 토글 */
+(function() {
+  const sb = document.getElementById('sidebar');
+  const sc = document.getElementById('scrim');
+  const app = document.getElementById('adminApp');
+  const toggle = document.getElementById('sideToggle');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        sb.classList.add('open'); sc.classList.add('show');
+      } else {
+        app.classList.toggle('collapsed');
+      }
+    });
+  }
+  if (sc) sc.addEventListener('click', () => { sb.classList.remove('open'); sc.classList.remove('show'); });
+
+  /* 현재 페이지 활성 표시 */
+  const path = location.pathname;
+  document.querySelectorAll('.sidebar .nav-item').forEach(a => {
+    if (a.href && a.href.includes(path.split('/').pop())) {
+      a.classList.add('active');
+    }
+  });
+
+  /* 테마 토글 */
+  const themeBtn  = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    if (themeIcon) themeIcon.className = t === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    try { localStorage.setItem('admin-theme', t); } catch(e) {}
+  }
+  themeBtn?.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    setTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+  try { const s = localStorage.getItem('admin-theme'); if (s) setTheme(s); } catch(e) {}
+})();
+</script>
+</body>
+</html>

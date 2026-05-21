@@ -1,161 +1,108 @@
-  <!-- 검색 폼 -->
-  <div class="siiruBoard-search">
-    <form id="boardSearchForm" name="boardSearchForm" method="post" action="#">
+<!-- 검색 -->
+<div class="card-soft mb-4">
+  <div class="cb">
+    <form class="d-flex gap-2 flex-wrap align-items-center" id="boardSearchForm" name="boardSearchForm" method="post" action="#">
       <input type="hidden" name="pageId" value="">
       <input type="hidden" id="movePage" name="movePage" value="1">
       <input type="hidden" id="boardId" name="boardId" value="">
-      <div class="dateSearch" style="display:none">
-        <input type="radio" id="dateSet0" name="searchDateSet" value="0">
-        <label for="dateSet0"> 오늘 </label>
-        <input type="radio" id="dateSet1" name="searchDateSet" value="6">
-        <label for="dateSet1"> 일주일 </label>
-        <input type="radio" id="dateSet2" name="searchDateSet" value="30">
-        <label for="dateSet2"> 1개월 </label>
-        <input type="radio" id="dateSet3" name="searchDateSet" value="90">
-        <label for="dateSet3"> 3개월 </label>
-        <input type="radio" id="dateSet4" name="searchDateSet" value="180">
-        <label for="dateSet4"> 6개월 </label>
-        <input type="radio" id="dateSet5" name="searchDateSet" value="365">
-        <label for="dateSet5"> 1년 </label>
-        <input type="text" class="maskDate" id="searchSDe" name="searchSDe" maxlength="10" autocomplete="off" placeholder="검색 시작일">
-        ~
-        <input type="text" class="maskDate" id="searchEDe" name="searchEDe" maxlength="10" autocomplete="off" placeholder="검색 종료일">
-      </div>
-      <select id="searchCtgry" name="searchCtgry" title="분류 선택">
+      <select class="form-select" style="width:auto;" id="searchCtgry" name="searchCtgry" title="분류 선택">
         <option value="">전체 분류</option>
         <option value="CAT_A">카테고리A</option>
         <option value="CAT_B">카테고리B</option>
         <option value="CAT_C">카테고리C</option>
       </select>
-      <select id="searchTy" name="searchTy" title="검색 조건">
+      <select class="form-select" style="width:auto;" id="searchTy" name="searchTy" title="검색 조건">
         <option value="T">제목</option>
         <option value="C">내용</option>
         <option value="TC">제목+내용</option>
         <option value="N">작성자</option>
       </select>
-      <input type="text" id="searchQuery" name="searchQuery" placeholder="검색어를 입력하세요" title="검색어">
-      <button type="submit">검색</button>
+      <input type="text" class="form-control" style="flex:1;min-width:180px;" id="searchQuery" name="searchQuery" placeholder="검색어를 입력하세요" title="검색어">
+      <button type="submit" class="btn-dark-pill"><i class="fa-solid fa-magnifying-glass"></i> 검색</button>
     </form>
   </div>
-  <script>
-  (function () {
-    var sc = document.currentScript;
-    if (!sc || !sc.parentNode) return;
-    var wrap = sc.closest('.siiru-boardWrap');
-    if (!wrap) return;
-    var filter = wrap.querySelector('.board-district-filter');
-    var sel = wrap.querySelector('#searchCtgry');
-    if (!filter || !sel || !filter.querySelectorAll) return;
-    var v = sel.value;
-    filter.querySelectorAll('button[data-category]').forEach(function (btn) {
-      var raw = btn.getAttribute('data-category');
-      var tv = raw === null ? '' : raw;
-      btn.classList.toggle('on', tv === v);
-    });
-  })();
-  </script>
+</div>
 
-  <!-- 목록 정보 -->
-  <div class="siiruBoard-listInfo">
-    <p>전체 : 10 / 페이지 : 1 [today : 0]</p>
-  </div>
-
-  <!-- 게시글 테이블 -->
-  <div class="siiruBoard-list">
-    <table>
-      <colgroup>
-        <col style="width:88px">
-        <col style="width:100px">
-        <col>
-        <col style="width:100px">
-        <col style="width:100px">
-        <col style="width:44px">
-        <col style="width:70px">
-      </colgroup>
-      <thead>
-        <tr>
-          <th scope="col" class="sn">번호</th>
-          <th scope="col" class="ctgryNm">분류</th>
-          <th scope="col" class="boardSj">제목</th>
-          <th scope="col" class="userNm">작성자</th>
-          <th scope="col" class="regDt">작성일</th>
-          <th scope="col" class="file">파일</th>
-          <th scope="col" class="rdcnt">조회</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="notice">
-          <td class="sn"><span class="notice">Notice</span></td>
-          <td class="ctgryNm"><span class="board-cat">카테고리A</span></td>
-          <th scope="row" class="boardSj">
-            <a href="view.html" class="new">공지사항 제목 샘플입니다 (고정글)</a>
-          </th>
-          <td class="userNm">관리자</td>
-          <td class="regDt">2026-01-10</td>
-          <td class="file"><i class="fa-regular fa-paperclip"></i></td>
-          <td class="rdcnt">128</td>
-        </tr>
-        <tr>
-          <td class="sn">10</td>
-          <td class="ctgryNm"><span class="board-cat">카테고리A</span></td>
-          <th scope="row" class="boardSj">
-            <a href="view.html">게시글 제목 샘플 10번입니다</a>
-          </th>
-          <td class="userNm">작성자</td>
-          <td class="regDt">2026-01-08</td>
-          <td class="file"><i class="fa-regular fa-paperclip"></i></td>
-          <td class="rdcnt">42</td>
-        </tr>
-        <tr>
-          <td class="sn">9</td>
-          <td class="ctgryNm"><span class="board-cat cat-b">카테고리B</span></td>
-          <th scope="row" class="boardSj">
-            <a href="view.html">게시글 제목 샘플 9번입니다</a>
-          </th>
-          <td class="userNm">작성자</td>
-          <td class="regDt">2026-01-06</td>
-          <td class="file"></td>
-          <td class="rdcnt">31</td>
-        </tr>
-        <tr>
-          <td class="sn">8</td>
-          <td class="ctgryNm"><span class="board-cat">카테고리A</span></td>
-          <th scope="row" class="boardSj">
-            <a href="view.html">게시글 제목 샘플 8번입니다</a>
-          </th>
-          <td class="userNm">작성자</td>
-          <td class="regDt">2026-01-04</td>
-          <td class="file"></td>
-          <td class="rdcnt">25</td>
-        </tr>
-        <tr>
-          <td class="sn">7</td>
-          <td class="ctgryNm"><span class="board-cat cat-b">카테고리B</span></td>
-          <th scope="row" class="boardSj">
-            <a href="view.html">게시글 제목 샘플 7번입니다</a>
-          </th>
-          <td class="userNm">작성자</td>
-          <td class="regDt">2026-01-02</td>
-          <td class="file"><i class="fa-regular fa-paperclip"></i></td>
-          <td class="rdcnt">19</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 페이징 -->
-  <div id="boardPage">
-    <div class="pagination">
-      <ul>
-        <li><a href="#" class="prev" data-tp="boardPage" data-move="1" aria-label="이전 페이지"><i class="fa-regular fa-chevron-left"></i></a></li>
-        <li class="active"><a href="#" data-tp="boardPage" data-move="1" class="active" title="현재 페이지. 1페이지 입니다">1</a></li>
-        <li><a href="#" data-tp="boardPage" data-move="2">2</a></li>
-        <li><a href="#" class="next" data-tp="boardPage" data-move="2" aria-label="다음 페이지"><i class="fa-regular fa-chevron-right"></i></a></li>
-      </ul>
+<!-- 목록 테이블 -->
+<div class="card-soft mb-4">
+  <div class="ch">
+    <h6>전체 10건</h6>
+    <div class="sub">
+      <a href="write.html" class="btn-dark-pill"><i class="fa-solid fa-plus"></i> 등록</a>
     </div>
   </div>
-
-  <!-- 등록 버튼 -->
-  <div class="siiru-tr siiru-mb20 board-register">
-    <a href="write.html" class="siiru-btn siiru-btn-primary">등록</a>
+  <div class="cb p-0">
+    <div class="table-wrap">
+      <table class="adm">
+        <thead>
+          <tr>
+            <th style="width:80px;">번호</th>
+            <th style="width:100px;">분류</th>
+            <th>제목</th>
+            <th style="width:90px;">작성자</th>
+            <th style="width:100px;">작성일</th>
+            <th style="width:44px;">파일</th>
+            <th style="width:60px;">조회</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag warn">Notice</span></td>
+            <td><span class="board-cat">카테고리A</span></td>
+            <td><a href="view.html" style="color:var(--ink);text-decoration:none;font-weight:500;">공지사항 제목 샘플입니다 (고정글)</a></td>
+            <td>관리자</td>
+            <td>2026-01-10</td>
+            <td><i class="fa-regular fa-paperclip" style="color:var(--muted);"></i></td>
+            <td>128</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><span class="board-cat">카테고리A</span></td>
+            <td><a href="view.html" style="color:var(--ink);text-decoration:none;">게시글 제목 샘플 10번입니다</a></td>
+            <td>작성자</td>
+            <td>2026-01-08</td>
+            <td><i class="fa-regular fa-paperclip" style="color:var(--muted);"></i></td>
+            <td>42</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><span class="board-cat cat-b">카테고리B</span></td>
+            <td><a href="view.html" style="color:var(--ink);text-decoration:none;">게시글 제목 샘플 9번입니다</a></td>
+            <td>작성자</td>
+            <td>2026-01-06</td>
+            <td></td>
+            <td>31</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><span class="board-cat">카테고리A</span></td>
+            <td><a href="view.html" style="color:var(--ink);text-decoration:none;">게시글 제목 샘플 8번입니다</a></td>
+            <td>작성자</td>
+            <td>2026-01-04</td>
+            <td></td>
+            <td>25</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><span class="board-cat cat-b">카테고리B</span></td>
+            <td><a href="view.html" style="color:var(--ink);text-decoration:none;">게시글 제목 샘플 7번입니다</a></td>
+            <td>작성자</td>
+            <td>2026-01-02</td>
+            <td><i class="fa-regular fa-paperclip" style="color:var(--muted);"></i></td>
+            <td>19</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+</div>
+
+<!-- 페이지네이션 -->
+<nav class="mb-4">
+  <ul class="pagination pagination-sm mb-0">
+    <li class="page-item"><a class="page-link" href="#">이전</a></li>
+    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+  </ul>
+</nav>

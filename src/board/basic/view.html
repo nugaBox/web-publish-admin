@@ -1,182 +1,55 @@
-<div class="siiru-boardWrap">
+<!-- 검색 상태 유지용 hidden form -->
+<form id="boardSearchForm" name="boardSearchForm" method="post" action="#" hidden>
+  <input type="hidden" name="pageId" value="">
+  <input type="hidden" id="movePage" name="movePage" value="1">
+  <input type="hidden" id="boardId" name="boardId" value="">
+  <input type="hidden" id="searchCtgry" name="searchCtgry" value="">
+  <input type="hidden" id="searchTy" name="searchTy" value="">
+  <input type="hidden" id="searchQuery" name="searchQuery" value="">
+</form>
 
-  <!-- 검색 상태 유지용 hidden form -->
-  <form id="boardSearchForm" name="boardSearchForm" method="post" action="#">
-    <input type="hidden" name="pageId" value="">
-    <input type="hidden" id="movePage" name="movePage" value="1">
-    <input type="hidden" id="boardId" name="boardId" value="">
-    <input type="hidden" id="searchCtgry" name="searchCtgry" value="">
-    <input type="hidden" id="searchCtgryNm" name="searchCtgryNm" value="">
-    <input type="hidden" id="searchSDe" name="searchSDe" value="">
-    <input type="hidden" id="searchEDe" name="searchEDe" value="">
-    <input type="hidden" id="searchPrcs" name="searchPrcs" value="">
-    <input type="hidden" id="searchTy" name="searchTy" value="">
-    <input type="hidden" id="searchQuery" name="searchQuery" value="">
-  </form>
-
-  <div class="siiruBoard-view">
-    <form id="boardForm" name="boardForm" method="post">
-      <input type="hidden" id="seq" name="seq" value="1">
-
-      <h4>게시글 제목 샘플입니다</h4>
-
-      <div class="siiruBoardInfo">
-        <div class="boardInfo-view">
-          <span>작성자 : 관리자</span>
-          <span>작성일 : 2026-01-10 09:00</span>
-          <span>42</span>
-        </div>
-      </div>
-
-      <div class="siiruBoardBody">
-        <div class="boardContents siiru-clr">
-          <p>게시글 본문 내용이 이곳에 표시됩니다.<br>
-            <br>이 영역은 CMS에서 WYSIWYG 에디터로 작성한 내용이 출력됩니다.<br>
-            <br>이미지, 표, 링크 등 다양한 컨텐츠를 포함할 수 있습니다.</p>
-          <p><div class="placeholder">PHOTO PLACEHOLDER</div></p>
-        </div>
-        <div class="manageInfo siiru-clr">
-          <small>Write : 관리자 (manager) 2026-01-10 09:00:00</small>
-          <small>Update : 관리자 (manager) 2026-01-10 09:01:00</small>
-        </div>
-      </div>
-    </form>
-
-    <div class="siiruBoardBtnInfo">
-      <div class="siiru-fl">
-        <button class="moveBtn siiru-btn siiru-btn-warning" data-modal="#moveModal" type="button">이동</button>
-        <button class="regBtn siiru-btn siiru-btn-warning siiru-ml5" data-modal="#regModal" type="button">작성일</button>
-      </div>
-      <div class="siiru-fr">
-        <a href="write.html?seq=3145847" class="siiru-btn siiru-btn-warning siiru-ml5">수정</a>
-        <button class="delBtn siiru-btn siiru-btn-danger siiru-ml5" data-action="D" type="button">삭제</button>
-        <a href="list.html" class="siiru-btn siiru-ml5">목록</a>
-      </div>
+<!-- 본문 카드 -->
+<div class="card-soft mb-4">
+  <div class="ch" style="gap:10px;align-items:flex-start;flex-wrap:wrap;">
+    <span class="board-cat">카테고리A</span>
+    <h6 style="flex:1;margin:0;line-height:1.4;">게시글 제목 샘플입니다</h6>
+  </div>
+  <div class="cb">
+    <div class="d-flex gap-3 mb-4 pb-4" style="border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);flex-wrap:wrap;">
+      <span>작성자: 관리자</span>
+      <span>작성일: 2026-01-10 09:00</span>
+      <span>조회: 42</span>
     </div>
-
-    <div id="privacyModal" class="siiruModal modal" style="display:none;" hidden>
-      <div class="siiruModalHeader"><p>개인정보 열람</p></div>
-      <div class="siiruModalBody">
-        <p class="privacy">
-          민원인 정보 등 개인정보와 민원내용은 민원처리 목적으로만<br>
-          사용하여야 하며, <span class="text-info">정보주체의 동의</span> 없이 <span class="text-danger">무단으로 제3자에게</span><br>
-          <span class="text-danger">제공</span> 한 경우에는 <span class="text-danger">5년 이하의 징역 또는 5천만원 이하의 벌금</span><br>
-          에 처할 수 있습니다.
-        </p>
-      </div>
-      <div class="siiruModalFooter siiru-tr">
-        <input type="checkbox" id="privacyCookie" name="privacyCookie" value="NOTICE">
-        <label for="privacyCookie"> 하루동안 이창을 다시 열지않음 </label>
-        <a href="#close" class="siiru-btn siiru-btn-small siiru-btn-danger siiru-ml10" rel="modal:close">닫기</a>
-      </div>
+    <div class="board-body mb-4">
+      <p>게시글 본문 내용이 이곳에 표시됩니다.<br>
+        <br>이 영역은 CMS에서 WYSIWYG 에디터로 작성한 내용이 출력됩니다.<br>
+        <br>이미지, 표, 링크 등 다양한 컨텐츠를 포함할 수 있습니다.</p>
+      <div class="placeholder" style="height:200px;margin-top:20px;">PHOTO PLACEHOLDER</div>
     </div>
-
-    <div id="moveModal" class="siiruModal modal" style="display:none;" hidden>
-      <div class="siiruModalHeader"><p>게시글 이동</p></div>
-      <div class="siiruModalBody">
-        <div>
-          <div style="display:inline-block;">
-            <input type="checkbox" id="removeAt" name="removeAt" value="Y" checked>
-            <label for="removeAt">삭제처리</label>
-          </div>
-          <input type="text" id="boardTable-filter" name="boardTable-filter" placeholder="Search for table data..." value="" style="display:inline-block;width:78%">
-        </div>
-        <div id="board" class="boardFindView">
-          <div class="scroll-container">
-            <table id="boardTable">
-              <caption>게시판 목록</caption>
-              <tbody>
-                <tr><td class="nodata">동일한 유형의 게시판이 없습니다.</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="siiruModalFooter siiru-tr">
-        <span id="moveBoardView" class="moveBoard"></span>
-        <input type="hidden" id="moveBoardId" name="moveBoardId" value="">
-        <button class="moveSBtn siiru-btn siiru-btn-small siiru-btn-primary" data-action="M" type="button">게시글 이동</button>
-        <a href="#close" class="siiru-btn siiru-btn-small siiru-btn-danger siiru-ml5" rel="modal:close">닫기</a>
-      </div>
+    <div style="font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:12px;">
+      <div>등록: 관리자 (manager) 2026-01-10 09:00:00</div>
+      <div>수정: 관리자 (manager) 2026-01-10 09:01:00</div>
     </div>
+  </div>
+</div>
 
-    <div id="regModal" class="siiruModal modal" style="display:none;" hidden>
-      <div class="siiruModalHeader"><p>작성일 수정</p></div>
-      <div class="siiruModalBody">
-        <form id="regForm" name="regForm" method="post">
-          <dl>
-            <dt><span>*</span> <label for="regDate">일자</label></dt>
-            <dd>
-              <input type="text" id="regDate" name="regDate" class="maskDate small" maxlength="10" value="2026-05-16">
-              <small> 2026-05-01</small>
-            </dd>
-          </dl>
-          <dl class="noborder">
-            <dt><span>*</span> <label for="regTime">시간</label></dt>
-            <dd>
-              <input type="text" id="regTime" name="regTime" class="maskFullTime small" maxlength="8" value="06:09:25">
-              <small> 09:00:00</small>
-            </dd>
-          </dl>
-        </form>
-      </div>
-      <div class="siiruModalFooter siiru-tr">
-        <button class="regSBtn siiru-btn siiru-btn-small siiru-btn-primary" data-action="DU" type="button">저장</button>
-        <a href="#close" class="siiru-btn siiru-btn-small siiru-btn-danger siiru-ml5" rel="modal:close">닫기</a>
-      </div>
+<!-- 버튼 -->
+<div class="d-flex gap-2 mb-4">
+  <a href="write.html?seq=1" class="btn-ghost"><i class="fa-solid fa-pen"></i> 수정</a>
+  <button class="btn-ghost" type="button" style="color:var(--danger);"><i class="fa-solid fa-trash"></i> 삭제</button>
+  <a href="list.html" class="btn-ghost" style="margin-left:auto;"><i class="fa-solid fa-list"></i> 목록</a>
+</div>
+
+<!-- 이전/다음 글 -->
+<div class="card-soft mb-4">
+  <div class="cb p-0">
+    <div class="board-nav-item">
+      <span class="nav-label">다음글</span>
+      <span style="color:var(--muted);font-size:13px;">다음글이 존재하지 않습니다.</span>
     </div>
-
-    <div class="siiruBoardList">
-      <ul>
-        <li>
-          <span>다음글</span>
-          다음글이 존재하지 않습니다.
-        </li>
-        <li>
-          <span>이전글</span>
-          이전글이 존재하지 않습니다.
-        </li>
-      </ul>
+    <div class="board-nav-item">
+      <span class="nav-label">이전글</span>
+      <a href="view.html">이전 게시글 제목 샘플입니다</a>
     </div>
-
-    <div class="siiruBoardViewlist">
-      <div class="siiruBoard-listInfo">
-        <p>전체게시글 : 1 / 전체페이지 : 1 [ today : ]</p>
-      </div>
-      <div class="siiruBoard-list">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col" class="num">번호</th>
-              <th scope="col" class="subject">제목</th>
-              <th scope="col" class="writer">작성자</th>
-              <th scope="col" class="date">작성일</th>
-              <th scope="col" class="file">파일</th>
-              <th scope="col" class="hit">조회</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="num">1</td>
-              <th scope="row" class="subject">
-                <a href="view.html" data-view="L" data-seq="1">게시글 제목 샘플입니다</a>
-              </th>
-              <td class="writer">관리자</td>
-              <td class="date">2026-05-16</td>
-              <td class="file"></td>
-              <td class="hit">10</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div id="boardPage">
-        <div class="pagination">
-          <ul>
-            <li><a href="#" data-tp="boardPage" data-move="1" class="active" title="현재 페이지. 1페이지 입니다">1</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>

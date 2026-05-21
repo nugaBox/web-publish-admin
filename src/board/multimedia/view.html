@@ -1,73 +1,67 @@
-<div class="siiru-boardWrap">
+<!-- 검색 상태 유지용 hidden form -->
+<form id="boardSearchForm" name="boardSearchForm" method="post" action="#" hidden>
+  <input type="hidden" name="pageId" value="">
+  <input type="hidden" id="movePage" name="movePage" value="">
+  <input type="hidden" id="boardId" name="boardId" value="">
+  <input type="hidden" id="searchTy" name="searchTy" value="">
+  <input type="hidden" id="searchQuery" name="searchQuery" value="">
+</form>
 
-  <form id="boardSearchForm" name="boardSearchForm" method="post" action="#">
-    <input type="hidden" name="pageId" value="">
-    <input type="hidden" id="movePage" name="movePage" value="">
-    <input type="hidden" id="boardId" name="boardId" value="">
-    <input type="hidden" id="searchTy" name="searchTy" value="">
-    <input type="hidden" id="searchQuery" name="searchQuery" value="">
-  </form>
-
-  <div class="siiruBoard-view">
-    <form id="boardForm" name="boardForm" method="post">
-      <input type="hidden" id="seq" name="seq" value="1">
-
-      <h4>갤러리 게시글 제목 샘플입니다</h4>
-
-      <div class="siiruBoardInfo">
-        <div class="boardInfo-view">
-          <span>작성자 : 관리자</span>
-          <span>등록일 : 2026.01.10</span>
-          <span>조회 42</span>
-        </div>
-        <!-- 첨부파일 -->
-        <dl>
-          <dt>첨부파일</dt>
-          <dd>
-            <ul>
-              <li>
-                <a href="#">사진모음.zip</a>
-                <small>[size: 10 MB, Download: 1]</small>
-              </li>
-            </ul>
-          </dd>
-        </dl>
-      </div>
-
-      <div class="siiruBoardBody">
-        <!-- 설명글 -->
-        <div class="boardContents siiru-clr">
-          <p>갤러리 게시글 본문 내용이 이곳에 표시됩니다. 행사 또는 활동에 대한 설명을 작성합니다.</p>
-        </div>
-        <!-- 이미지 뷰 -->
-        <div class="imageView">
-          <div class="placeholder">PHOTO PLACEHOLDER</div>
-          <div class="placeholder">PHOTO PLACEHOLDER</div>
-          <div class="placeholder">PHOTO PLACEHOLDER</div>
-        </div>
-      </div>
-    </form>
-
-    <div class="siiruBoardBtnInfo">
-      <div class="siiru-fl"></div>
-      <div class="siiru-fr">
-        <a href="write.html?seq=1" class="siiru-btn siiru-btn-warning siiru-ml5">수정</a>
-        <button class="delBtn siiru-btn siiru-btn-danger siiru-ml5" data-action="D" type="button">삭제</button>
-        <a href="list.html" class="siiru-btn siiru-ml5">목록</a>
-      </div>
+<!-- 본문 카드 -->
+<div class="card-soft mb-4">
+  <div class="ch" style="gap:10px;align-items:flex-start;flex-wrap:wrap;">
+    <span class="board-cat cat-g">카테고리A</span>
+    <h6 style="flex:1;margin:0;line-height:1.4;">갤러리 게시글 제목 샘플입니다</h6>
+  </div>
+  <div class="cb">
+    <div class="d-flex gap-3 mb-4 pb-4" style="border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);flex-wrap:wrap;">
+      <span>작성자: 관리자</span>
+      <span>등록일: 2026.01.10</span>
+      <span>조회: 42</span>
     </div>
 
-    <div class="siiruBoardList">
-      <ul>
+    <div class="board-body mb-4">
+      <p>갤러리 게시글 본문 내용이 이곳에 표시됩니다. 행사 또는 활동에 대한 설명을 작성합니다.</p>
+    </div>
+
+    <!-- 이미지 갤러리 -->
+    <div class="gallery-grid mb-4">
+      <div class="placeholder" style="height:200px;">PHOTO PLACEHOLDER</div>
+      <div class="placeholder" style="height:200px;">PHOTO PLACEHOLDER</div>
+      <div class="placeholder" style="height:200px;">PHOTO PLACEHOLDER</div>
+    </div>
+
+    <!-- 첨부파일 -->
+    <div class="fg">
+      <label>첨부파일</label>
+      <ul class="attach-list">
         <li>
-          <span>다음글</span>
-          다음글이 존재하지 않습니다.
-        </li>
-        <li>
-          <span>이전글</span>
-          이전글이 존재하지 않습니다.
+          <i class="fa-regular fa-file-zipper"></i>
+          <a href="#">사진모음.zip</a>
+          <small style="color:var(--muted);">[10 MB / 다운로드 1회]</small>
         </li>
       </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 버튼 -->
+<div class="d-flex gap-2 mb-4">
+  <a href="write.html?seq=1" class="btn-ghost"><i class="fa-solid fa-pen"></i> 수정</a>
+  <button class="btn-ghost" type="button" style="color:var(--danger);"><i class="fa-solid fa-trash"></i> 삭제</button>
+  <a href="list.html" class="btn-ghost" style="margin-left:auto;"><i class="fa-solid fa-list"></i> 목록</a>
+</div>
+
+<!-- 이전/다음 글 -->
+<div class="card-soft mb-4">
+  <div class="cb p-0">
+    <div class="board-nav-item">
+      <span class="nav-label">다음글</span>
+      <span style="color:var(--muted);font-size:13px;">다음글이 존재하지 않습니다.</span>
+    </div>
+    <div class="board-nav-item">
+      <span class="nav-label">이전글</span>
+      <span style="color:var(--muted);font-size:13px;">이전글이 존재하지 않습니다.</span>
     </div>
   </div>
 </div>

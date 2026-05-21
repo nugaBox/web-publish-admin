@@ -1,22 +1,87 @@
-<header id="site-header">
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="/index.html">NUGABOX</a>
-      <button class="navbar-toggler" type="button"
-        data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="메뉴 열기">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto gap-1">
-          <li class="nav-item">
-            <a class="nav-link" href="/index.html">홈</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/sub/contents.html">서브 페이지</a>
-          </li>
-        </ul>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>관리자</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/assets/css/pretendard.css">
+  <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/sub.css">
+</head>
+<body>
+<div class="app" id="adminApp">
+  <div class="scrim" id="scrim"></div>
+
+  <!-- 사이드바 -->
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="/index.html">
+      <div class="brand-mark"><i class="fa-solid fa-chess-king"></i></div>
+      <div>
+        <div class="brand-name">홈페이지 관리자</div>
+        <div class="brand-sub">NUGABOX</div>
+      </div>
+    </a>
+
+    <div class="search">
+      <div class="wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" class="form-control" placeholder="검색 (회원, 콘텐츠, 메뉴…)">
+        <span class="kbd">⌘K</span>
       </div>
     </div>
-  </nav>
-</header>
+
+    <nav class="nav-section">
+      <div class="nav-label">메인</div>
+      <a class="nav-item" href="/index.html">
+        <span class="ic"><i class="fa-solid fa-table-cells-large"></i></span>
+        대시보드
+      </a>
+
+      <div class="nav-label">관리</div>
+      <a class="nav-item" href="/sub/contents.html">
+        <span class="ic"><i class="fa-solid fa-file-lines"></i></span>
+        콘텐츠 관리
+      </a>
+      <a class="nav-item" href="/boardpage/notice/list.html">
+        <span class="ic"><i class="fa-solid fa-bullhorn"></i></span>
+        공지 · 게시판
+      </a>
+      <a class="nav-item" href="/boardpage/gallery/list.html">
+        <span class="ic"><i class="fa-solid fa-images"></i></span>
+        갤러리
+      </a>
+    </nav>
+
+    <div class="side-footer">
+      <div class="avatar-square"><i class="fa-solid fa-user"></i></div>
+      <div class="who flex-grow-1">
+        <div class="name text-truncate">관리자</div>
+      </div>
+      <a class="icon-btn" href="/index.html" title="대시보드"><i class="fa-solid fa-house"></i></a>
+    </div>
+  </aside>
+
+  <!-- 메인 영역 -->
+  <div class="main">
+    <div class="panel">
+      <header class="crumb-bar">
+        <button class="toggle-side" id="sideToggle" title="사이드바 접기/펼치기">
+          <i class="fa-solid fa-table-columns"></i>
+        </button>
+        <div class="crumbs">
+          <span class="root">관리자</span>
+          <span class="sep">/</span>
+          <span class="cur" id="crumb">페이지</span>
+        </div>
+        <div class="actions">
+          <button class="icon-btn" id="themeToggle" title="다크/라이트 전환">
+            <i class="fa-solid fa-moon" id="themeIcon"></i>
+          </button>
+          <a class="btn-dark-pill ms-1" href="/index.html" style="height:32px;padding:0 14px;font-size:13px;">대시보드로</a>
+        </div>
+      </header>
+      <main class="content">
