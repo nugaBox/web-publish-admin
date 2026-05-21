@@ -1,11 +1,14 @@
 {
   "name": "web-publish",
   "version": "1.0.0",
+  "templateVersion": "1.1.0",
   "description": "HTML Publishing Boilerplate with Bootstrap (Local)",
   "scripts": {
     "setup": "node scripts/setup.js",
+    "dev": "node scripts/dev.js",
     "build": "node scripts/build.js",
-    "dev": "browser-sync start --server src --files 'src/**/*.html, src/assets/css/**/*.css, src/assets/js/**/*.js' --no-notify",
+    "build:siiru": "BUILD_MODE=siiru node scripts/build.js",
+    "preview": "browser-sync start --server dist --no-notify",
     "start": "npm run dev"
   },
   "devDependencies": {
