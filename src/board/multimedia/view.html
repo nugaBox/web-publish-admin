@@ -1,0 +1,73 @@
+<div class="siiru-boardWrap">
+
+  <form id="boardSearchForm" name="boardSearchForm" method="post" action="#">
+    <input type="hidden" name="pageId" value="">
+    <input type="hidden" id="movePage" name="movePage" value="">
+    <input type="hidden" id="boardId" name="boardId" value="">
+    <input type="hidden" id="searchTy" name="searchTy" value="">
+    <input type="hidden" id="searchQuery" name="searchQuery" value="">
+  </form>
+
+  <div class="siiruBoard-view">
+    <form id="boardForm" name="boardForm" method="post">
+      <input type="hidden" id="seq" name="seq" value="1">
+
+      <h4>갤러리 게시글 제목 샘플입니다</h4>
+
+      <div class="siiruBoardInfo">
+        <div class="boardInfo-view">
+          <span>작성자 : 관리자</span>
+          <span>등록일 : 2026.01.10</span>
+          <span>조회 42</span>
+        </div>
+        <!-- 첨부파일 -->
+        <dl>
+          <dt>첨부파일</dt>
+          <dd>
+            <ul>
+              <li>
+                <a href="#">사진모음.zip</a>
+                <small>[size: 10 MB, Download: 1]</small>
+              </li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+
+      <div class="siiruBoardBody">
+        <!-- 설명글 -->
+        <div class="boardContents siiru-clr">
+          <p>갤러리 게시글 본문 내용이 이곳에 표시됩니다. 행사 또는 활동에 대한 설명을 작성합니다.</p>
+        </div>
+        <!-- 이미지 뷰 -->
+        <div class="imageView">
+          <div class="placeholder">PHOTO PLACEHOLDER</div>
+          <div class="placeholder">PHOTO PLACEHOLDER</div>
+          <div class="placeholder">PHOTO PLACEHOLDER</div>
+        </div>
+      </div>
+    </form>
+
+    <div class="siiruBoardBtnInfo">
+      <div class="siiru-fl"></div>
+      <div class="siiru-fr">
+        <a href="write.html?seq=1" class="siiru-btn siiru-btn-warning siiru-ml5">수정</a>
+        <button class="delBtn siiru-btn siiru-btn-danger siiru-ml5" data-action="D" type="button">삭제</button>
+        <a href="list.html" class="siiru-btn siiru-ml5">목록</a>
+      </div>
+    </div>
+
+    <div class="siiruBoardList">
+      <ul>
+        <li>
+          <span>다음글</span>
+          다음글이 존재하지 않습니다.
+        </li>
+        <li>
+          <span>이전글</span>
+          이전글이 존재하지 않습니다.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
