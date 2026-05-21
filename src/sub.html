@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서브 페이지 — NUGABOX</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/pretendard.css">
+  <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/sub.css">
+</head>
+<body>
+
+  <!-- 헤더 (로컬 개발용 include) -->
+  <div data-include="include/header.html"></div>
+
+  <main id="main-content">
+
+    <!-- ── 페이지 헤더 ──────────────────────────────────────── -->
+    <section class="section-sm section-soft">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-2">
+            <li class="breadcrumb-item"><a href="index.html">홈</a></li>
+            <li class="breadcrumb-item active" aria-current="page">서브 페이지</li>
+          </ol>
+        </nav>
+        <h1 class="section-title mb-1">서브 페이지</h1>
+        <p class="section-subtitle">sub.html · sub.css · sub.js 로 구성된 페이지입니다.</p>
+      </div>
+    </section>
+
+    <!-- ── 본문 콘텐츠 ─────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="row g-4">
+
+          <!-- 메인 콘텐츠 -->
+          <div class="col-lg-8">
+            <div class="mb-5">
+              <h2 class="h4 fw-bold mb-3">
+                <i class="fa-solid fa-circle-info text-primary me-2"></i>페이지 구성 안내
+              </h2>
+              <p class="text-muted">
+                이 페이지는 <code>sub.html</code>을 기반으로 합니다.
+                페이지 전용 스타일은 <code>assets/css/sub.css</code>에,
+                스크립트는 <code>assets/js/sub.js</code>에 작성하세요.
+              </p>
+              <ul class="list-group list-group-flush border rounded-3 mt-3">
+                <li class="list-group-item d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-check text-success"></i>
+                  <span>전역 스타일: <code>style.css</code></span>
+                </li>
+                <li class="list-group-item d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-check text-success"></i>
+                  <span>페이지 전용 스타일: <code>sub.css</code></span>
+                </li>
+                <li class="list-group-item d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-check text-success"></i>
+                  <span>전역 스크립트: <code>script.js</code> (include 로더 포함)</span>
+                </li>
+                <li class="list-group-item d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-check text-success"></i>
+                  <span>페이지 전용 스크립트: <code>sub.js</code></span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="h4 fw-bold mb-3">
+                <i class="fa-solid fa-icons text-warning me-2"></i>아이콘 샘플
+              </h2>
+              <div class="d-flex flex-wrap gap-3">
+                <span class="badge bg-primary fs-6 py-2 px-3">
+                  <i class="bi bi-house-fill me-1"></i>Bootstrap Icons
+                </span>
+                <span class="badge bg-warning text-dark fs-6 py-2 px-3">
+                  <i class="fa-solid fa-house me-1"></i>FA Solid
+                </span>
+                <span class="badge bg-info text-dark fs-6 py-2 px-3">
+                  <i class="fa-regular fa-house me-1"></i>FA Regular
+                </span>
+                <span class="badge bg-secondary fs-6 py-2 px-3">
+                  <i class="fa-light fa-house me-1"></i>FA Light
+                </span>
+                <span class="badge bg-dark fs-6 py-2 px-3">
+                  <i class="fa-thin fa-house me-1"></i>FA Thin
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 사이드바 -->
+          <div class="col-lg-4">
+            <div class="p-4 bg-light rounded-3">
+              <h3 class="h6 fw-bold text-muted text-uppercase mb-3">
+                <i class="fa-solid fa-layer-group me-1"></i>관련 파일
+              </h3>
+              <ul class="list-unstyled mb-0 small">
+                <li class="mb-2">
+                  <i class="bi bi-file-earmark-code text-primary me-1"></i>
+                  <code>src/sub.html</code>
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-file-earmark-code text-success me-1"></i>
+                  <code>src/assets/css/sub.css</code>
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-file-earmark-code text-warning me-1"></i>
+                  <code>src/assets/js/sub.js</code>
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-file-earmark-text text-muted me-1"></i>
+                  <code>src/include/header.html</code>
+                </li>
+                <li>
+                  <i class="bi bi-file-earmark-text text-muted me-1"></i>
+                  <code>src/include/footer.html</code>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-3">
+              <a href="index.html" class="btn btn-outline-secondary w-100">
+                <i class="fa-solid fa-arrow-left me-1"></i>홈으로 돌아가기
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 푸터 (로컬 개발용 include) -->
+  <div data-include="include/footer.html"></div>
+
+  <!-- JS -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/sub.js"></script>
+</body>
+</html>

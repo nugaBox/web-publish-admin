@@ -1,0 +1,99 @@
+/* ============================================================
+   style.css — 전역 공통 스타일
+   CMS CSS 항목에 이 파일 전체 내용을 등록합니다.
+   ============================================================ */
+
+/* ── CSS 변수 ─────────────────────────────────────────────── */
+:root {
+  --color-primary:    #0d6efd;
+  --color-text:       #212529;
+  --color-bg:         #ffffff;
+  --color-bg-soft:    #f8f9fa;
+  --color-bg-dark:    #212529;
+  --spacing-section:  80px;
+  --font-base:        "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --radius-md:        8px;
+  --transition-base:  0.2s ease;
+}
+
+/* ── 기본 ─────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+/* ── 헤더 ─────────────────────────────────────────────────── */
+#site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+#site-header .navbar {
+  background-color: var(--color-bg-dark);
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+}
+
+#site-header .navbar-brand {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+#site-header .nav-link {
+  color: rgba(255, 255, 255, 0.75);
+  transition: color var(--transition-base);
+}
+
+#site-header .nav-link:hover,
+#site-header .nav-link.active {
+  color: #fff;
+}
+
+#site-header .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+#site-header .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* ── 푸터 ─────────────────────────────────────────────────── */
+#site-footer {
+  background-color: var(--color-bg-dark);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 2rem 0;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* ── 섹션 유틸리티 ────────────────────────────────────────── */
+.section    { padding: var(--spacing-section) 0; }
+.section-sm { padding: calc(var(--spacing-section) / 2) 0; }
+
+.section-soft { background-color: var(--color-bg-soft); }
+
+.section-dark {
+  background-color: var(--color-bg-dark);
+  color: #fff;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+.section-dark .section-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+}
