@@ -55,24 +55,6 @@ sc.addEventListener('click', () => {
   sc.classList.remove('show');
 });
 
-/* ── 테마 토글 ────────────────────────────────────────────── */
-const themeBtn  = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
-
-function setTheme(t) {
-  document.documentElement.setAttribute('data-theme', t);
-  if (themeIcon) themeIcon.className = t === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-  try { localStorage.setItem('admin-theme', t); } catch (e) {}
-}
-themeBtn?.addEventListener('click', () => {
-  const cur = document.documentElement.getAttribute('data-theme') || 'light';
-  setTheme(cur === 'dark' ? 'light' : 'dark');
-});
-try {
-  const saved = localStorage.getItem('admin-theme');
-  if (saved) setTheme(saved);
-} catch (e) {}
-
 /* ── 세그먼트 토글 ────────────────────────────────────────── */
 document.querySelectorAll('.seg').forEach(seg => {
   seg.querySelectorAll('button').forEach(b => {
@@ -368,4 +350,6 @@ function syncMsDark() {
   if (msDark) msDark.checked = document.documentElement.getAttribute('data-theme') === 'dark';
 }
 syncMsDark();
-msDark?.addEventListener('change', () => setTheme(msDark.checked ? 'dark' : 'light'));
+msDark?.addEventListener('change', () => {
+  if (typeof setAdminTheme === 'function') setAdminTheme(msDark.checked ? 'dark' : 'light');
+});

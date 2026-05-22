@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>로그인 · NUGABOX</title>
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/pretendard.css">
+  <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="login-page">
+
+<button type="button" class="login-theme-toggle" id="themeToggle" aria-label="다크/라이트 전환" title="다크/라이트 전환">
+  <i class="fa-solid fa-moon" id="themeIcon"></i>
+</button>
+
+<main class="login-stage">
+
+  <section class="login-hero" aria-labelledby="loginHeroTitle">
+    <div class="login-hero-copy">
+      <div class="login-hero-eyebrow">NUGABOX · Admin</div>
+      <h2 class="login-hero-title" id="loginHeroTitle">환영합니다.<br>운영의 모든 것을 한 자리에서.</h2>
+      <p class="login-hero-lede">
+        여러 사이트를 한 계정으로 관리하고, 회원과 콘텐츠 · 프로그램 · 통계를
+        한 곳에서 확인하세요.
+      </p>
+      <ul class="login-hero-features">
+        <li><span class="login-tick"><i class="fa-solid fa-check" aria-hidden="true"></i></span>사이트 관리</li>
+        <li><span class="login-tick"><i class="fa-solid fa-check" aria-hidden="true"></i></span>회원 관리</li>
+        <li><span class="login-tick"><i class="fa-solid fa-check" aria-hidden="true"></i></span>사이트별 프로그램</li>
+        <li><span class="login-tick"><i class="fa-solid fa-check" aria-hidden="true"></i></span>통계</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="login-auth" aria-labelledby="loginAuthTitle">
+    <div class="login-auth-inner">
+      <h1 id="loginAuthTitle">관리자 로그인.</h1>
+      <p class="login-auth-lede">
+        관리자 계정으로 로그인하거나 연결된 소셜 계정으로<br>
+        간편하게 시작하세요.
+      </p>
+
+      <form id="loginForm" novalidate>
+        <div class="login-form-group">
+          <label class="login-label" for="loginId">아이디</label>
+          <input id="loginId" class="login-field" type="text" name="username" autocomplete="username"
+                 placeholder="아이디를 입력하세요" required>
+        </div>
+        <div class="login-form-group">
+          <label class="login-label" for="loginPw">비밀번호</label>
+          <input id="loginPw" class="login-field" type="password" name="password" autocomplete="current-password"
+                 placeholder="비밀번호를 입력하세요" required>
+        </div>
+        <label class="login-remember">
+          <input type="checkbox" id="rememberId">
+          <span class="login-remember-box"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+          아이디 저장
+        </label>
+        <button class="login-btn-primary" type="submit">로그인</button>
+      </form>
+
+      <div class="login-divider"><span>또는</span></div>
+
+      <div class="login-socials">
+        <button type="button" class="login-soc login-soc-google" aria-label="Google로 계속"><i class="fa-brands fa-google" aria-hidden="true"></i></button>
+        <button type="button" class="login-soc login-soc-apple" aria-label="Apple로 계속"><i class="fa-brands fa-apple" aria-hidden="true"></i></button>
+        <button type="button" class="login-soc login-soc-naver" aria-label="네이버로 계속"></button>
+        <button type="button" class="login-soc login-soc-kakao" aria-label="카카오로 계속"></button>
+      </div>
+
+      <div class="login-terms">
+        <i class="fa-solid fa-check" aria-hidden="true"></i>
+        <div>
+          계정 생성 시 서비스 이용을 위한 필수 항목인
+          <u>서비스 이용약관</u>과 <u>개인정보 처리방침</u>에 동의합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="login-footer-links">
+      <span>© NUGABOX. All rights reserved.</span>
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

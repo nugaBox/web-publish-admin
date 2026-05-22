@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>로그인 · NUGABOX</title>
+
+<!-- Pretendard -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+  :root{
+    /* light (default) */
+    --bg:           #ffffff;
+    --hero-bg:      #f5f6f8;
+    --surface:      #ffffff;
+    --surface-2:    #fafbfc;
+    --border:       #ececef;
+    --border-strong:#e2e3e7;
+    --ink:          #111114;
+    --ink-2:        #2a2a2f;
+    --muted:        #6b7280;
+    --muted-2:      #9aa0a6;
+    --accent:       #111114;
+    --accent-ink:   #ffffff;
+    --field-bg:     #ffffff;
+    --field-bd:     #e2e3e7;
+    --field-bd-hover:#cdd1d6;
+
+    /* hero glyph palette (light) */
+    /* hero background photo + overlay */
+    --hero-photo: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=85&auto=format&fit=crop');
+    --hero-photo-filter: saturate(0.55) brightness(1.08) contrast(0.95);
+    --hero-overlay: linear-gradient(180deg, rgba(245,246,248,.72), rgba(245,246,248,.84));
+
+    --radius:   12px;
+    --radius-sm:8px;
+    --radius-lg:20px;
+    --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:           #0e0f12;
+      --hero-bg:      #0a0b0d;
+      --surface:      #16181c;
+      --surface-2:    #1b1d22;
+      --border:       #2a2d34;
+      --border-strong:#353841;
+      --ink:          #f3f4f6;
+      --ink-2:        #e5e7eb;
+      --muted:        #9aa1ad;
+      --muted-2:      #6b7280;
+      --accent:       #f3f4f6;
+      --accent-ink:   #0e0f12;
+      --field-bg:     #1b1d22;
+      --field-bd:     #2a2d34;
+      --field-bd-hover:#3a3d45;
+
+      --hero-photo-filter: saturate(0.5) brightness(0.55) contrast(1);
+      --hero-overlay: linear-gradient(180deg, rgba(10,11,13,.72), rgba(10,11,13,.86));
+    }
+  }
+  /* manual override (Tweaks) */
+  :root[data-theme="dark"]{
+    --bg:           #0e0f12;
+    --hero-bg:      #0a0b0d;
+    --surface:      #16181c;
+    --surface-2:    #1b1d22;
+    --border:       #2a2d34;
+    --border-strong:#353841;
+    --ink:          #f3f4f6;
+    --ink-2:        #e5e7eb;
+    --muted:        #9aa1ad;
+    --muted-2:      #6b7280;
+    --accent:       #f3f4f6;
+    --accent-ink:   #0e0f12;
+    --field-bg:     #1b1d22;
+    --field-bd:     #2a2d34;
+    --field-bd-hover:#3a3d45;
+    --hero-photo-filter: saturate(0.5) brightness(0.55) contrast(1);
+    --hero-overlay: linear-gradient(180deg, rgba(10,11,13,.72), rgba(10,11,13,.86));
+  }
+
+  *{ box-sizing:border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+  html,body{ height:100%; margin:0; }
+  body{
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+  a{ color: inherit; }
+  button{ font-family: inherit; }
+
+  /* ===== Layout ===== */
+  .stage{
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    background: var(--bg);
+  }
+
+  /* theme toggle (top-right, icon only) */
+  .theme-toggle{
+    position: fixed; top: 18px; right: 22px;
+    width: 36px; height: 36px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink);
+    display: grid; place-items: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: background .15s ease, color .15s ease;
+  }
+  .theme-toggle:hover{ background: var(--surface-2); }
+  .theme-toggle i{ font-size: 13px; }
+
+  /* ===== HERO (left) ===== */
+  .hero{
+    position: relative;
+    background: var(--hero-bg);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 56px 56px 56px;
+    border-right: 1px solid var(--border);
+    isolation: isolate;
+  }
+  /* full-bleed background photo */
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: var(--hero-photo);
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    /* keep it light & airy in light mode, deeper in dark mode */
+    filter: var(--hero-photo-filter);
+  }
+  /* soft tint overlay so the photo never overwhelms the light gray base */
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background: var(--hero-overlay);
+    z-index: -1;
+  }
+
+  .hero-copy{
+    max-width: 520px;
+    color: var(--ink);
+  }
+  .hero-eyebrow{
+    font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600;
+  }
+  .hero-title{
+    font-size: clamp(34px, 2.8vw, 46px);
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+    margin: 12px 0 18px;
+    text-wrap: balance;
+  }
+  .hero-lede{
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0 0 28px;
+    max-width: 460px;
+  }
+  .hero-features{
+    list-style: none;
+    padding: 0; margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 10px 28px;
+    color: var(--ink-2);
+    font-size: 13.5px;
+    font-weight: 500;
+  }
+  .hero-features li{
+    display:flex; align-items:center; gap: 10px;
+  }
+  .hero-features .tick{
+    width: 18px; height: 18px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    display:grid; place-items:center;
+    font-size: 9px;
+  }
+
+  /* ===== AUTH (right) ===== */
+  .auth{
+    display: grid;
+    place-items: center;
+    padding: 64px 56px;
+    position: relative;
+  }
+  .auth-inner{
+    width: 100%;
+    max-width: 360px;
+  }
+  .auth h1{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.22;
+    letter-spacing: -0.03em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  .auth .lede{
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0 0 32px;
+  }
+
+  .form-group{ margin-bottom: 10px; }
+  .label{
+    display:block;
+    font-size: 12px; color: var(--muted);
+    margin-bottom: 6px; font-weight: 500;
+  }
+  .field{
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    background: var(--field-bg);
+    border: 1px solid var(--field-bd);
+    border-radius: var(--radius);
+    color: var(--ink);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .field::placeholder{ color: var(--muted-2); }
+  .field:hover{ border-color: var(--field-bd-hover); }
+  .field:focus{ border-color: var(--ink); }
+
+  .btn-primary{
+    width: 100%;
+    height: 48px;
+    border-radius: var(--radius);
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 1px solid var(--accent);
+    font-size: 14px; font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: opacity .15s ease, transform .05s ease;
+  }
+  .btn-primary:hover{ opacity: .9; }
+  .btn-primary:active{ transform: translateY(1px); }
+
+  /* Remember-ID checkbox */
+  .remember{
+    display: inline-flex; align-items: center; gap: 8px;
+    margin: 12px 0 4px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .remember input{
+    position: absolute; opacity: 0; pointer-events: none;
+  }
+  .remember .box{
+    width: 16px; height: 16px;
+    border-radius: 4px;
+    border: 1.5px solid var(--field-bd);
+    background: var(--field-bg);
+    display: grid; place-items: center;
+    transition: background .12s ease, border-color .12s ease;
+  }
+  .remember .box i{
+    font-size: 9px; color: var(--accent-ink);
+    opacity: 0; transform: scale(.6);
+    transition: opacity .12s ease, transform .12s ease;
+  }
+  .remember:hover .box{ border-color: var(--field-bd-hover); }
+  .remember input:checked + .box{
+    background: var(--accent); border-color: var(--accent);
+  }
+  .remember input:checked + .box i{ opacity: 1; transform: scale(1); }
+  .remember input:focus-visible + .box{
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+
+  .divider{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0 16px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .divider::before, .divider::after{
+    content:"";
+    height:1px; background: var(--border);
+  }
+
+  .socials{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .soc{
+    height: 52px;
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    display: grid; place-items: center;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+    font-size: 18px;
+  }
+  .soc:hover{ background: var(--surface); border-color: var(--border-strong); }
+  .soc.google i{ background: conic-gradient(from -45deg, #ea4335, #fbbc05, #34a853, #4285f4, #ea4335); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 900; }
+  .soc.apple i{ color: var(--ink); }
+  .soc.naver{ position:relative; }
+  .soc.naver::after{
+    content:"N";
+    font-weight: 800;
+    color:#03c75a;
+    font-size: 18px;
+    font-family: var(--font);
+    letter-spacing: -0.04em;
+  }
+  .soc.kakao{ position:relative; }
+  .soc.kakao::after{
+    content:"";
+    width:22px; height:20px;
+    background: #fee500;
+    -webkit-mask: radial-gradient(ellipse at 50% 40%, #000 60%, transparent 62%);
+            mask: radial-gradient(ellipse at 50% 40%, #000 60%, transparent 62%);
+    border-radius: 6px;
+  }
+  .soc.kakao::before{
+    content:"K";
+    position:absolute;
+    color:#3c1e1e; font-weight: 800;
+    font-size: 11px; letter-spacing: -0.04em;
+    z-index: 2;
+  }
+
+  .terms{
+    margin-top: 26px;
+    display: flex; gap: 8px; align-items: flex-start;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .terms i{ color: var(--ink); margin-top: 3px; font-size: 11px; }
+  .terms u{ text-decoration: underline; text-underline-offset: 2px; color: var(--ink-2); }
+
+  .footer-links{
+    position: absolute; bottom: 24px; left: 0; right: 0;
+    display:flex; justify-content:center; gap: 18px;
+    font-size: 11.5px; color: var(--muted-2);
+  }
+  .footer-links a:hover{ color: var(--ink); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 960px){
+    .stage{ grid-template-columns: 1fr; }
+    .hero{ min-height: 360px; padding: 36px 24px; border-right: none; border-bottom: 1px solid var(--border); }
+    .auth{ padding: 40px 24px 80px; }
+    .hero-features{ grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="테마 전환" title="테마 전환">
+  <i class="fa-regular fa-circle-half-stroke"></i>
+</button>
+
+<main class="stage">
+
+  <!-- ============ LEFT: HERO ============ -->
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">NUGABOX · Admin</div>
+      <h2 class="hero-title">환영합니다.<br/>운영의 모든 것을 한 자리에서.</h2>
+      <p class="hero-lede">
+        여러 사이트를 한 계정으로 관리하고, 회원과 콘텐츠 · 프로그램 · 통계를
+        한 곳에서 확인하세요.
+      </p>
+      <ul class="hero-features">
+        <li><span class="tick"><i class="fa-solid fa-check"></i></span>사이트 관리</li>
+        <li><span class="tick"><i class="fa-solid fa-check"></i></span>회원 관리</li>
+        <li><span class="tick"><i class="fa-solid fa-check"></i></span>사이트별 프로그램</li>
+        <li><span class="tick"><i class="fa-solid fa-check"></i></span>통계</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ RIGHT: AUTH ============ -->
+  <section class="auth">
+    <div class="auth-inner">
+      <h1>관리자 로그인.</h1>
+      <p class="lede">
+        관리자 계정으로 로그인하거나 연결된 소셜 계정으로<br/>
+        간편하게 시작하세요.
+      </p>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="label" for="loginId">아이디</label>
+          <input id="loginId" class="field" type="text" autocomplete="username"
+                 placeholder="아이디를 입력하세요" required />
+        </div>
+        <div class="form-group">
+          <label class="label" for="loginPw">비밀번호</label>
+          <input id="loginPw" class="field" type="password" autocomplete="current-password"
+                 placeholder="비밀번호를 입력하세요" required />
+        </div>
+        <label class="remember">
+          <input type="checkbox" id="rememberId" />
+          <span class="box"><i class="fa-solid fa-check"></i></span>
+          아이디 저장
+        </label>
+        <button class="btn-primary" type="submit">로그인</button>
+      </form>
+
+      <div class="divider"><span>또는</span></div>
+
+      <div class="socials">
+        <button class="soc google" type="button" aria-label="Google로 계속"><i class="fa-brands fa-google"></i></button>
+        <button class="soc apple"  type="button" aria-label="Apple로 계속"><i class="fa-brands fa-apple"></i></button>
+        <button class="soc naver"  type="button" aria-label="네이버로 계속"></button>
+        <button class="soc kakao"  type="button" aria-label="카카오로 계속"></button>
+      </div>
+
+      <div class="terms">
+        <i class="fa-solid fa-check"></i>
+        <div>
+          계정 생성 시 서비스 이용을 위한 필수 항목인
+          <u>서비스 이용약관</u>과 <u>개인정보 처리방침</u>에 동의합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <span>© NUGABOX. All rights reserved.</span>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Theme toggle: system → light → dark → system
+  (function(){
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const icon = btn.querySelector('i');
+
+    function apply(state){
+      if(state === 'system'){
+        root.removeAttribute('data-theme');
+        icon.className = 'fa-regular fa-circle-half-stroke';
+        btn.title = '테마: 시스템 (클릭하여 변경)';
+      } else if(state === 'light'){
+        root.setAttribute('data-theme','light');
+        icon.className = 'fa-regular fa-sun';
+        btn.title = '테마: 라이트 (클릭하여 변경)';
+      } else {
+        root.setAttribute('data-theme','dark');
+        icon.className = 'fa-regular fa-moon';
+        btn.title = '테마: 다크 (클릭하여 변경)';
+      }
+      localStorage.setItem('nugabox.theme', state);
+    }
+
+    const initial = localStorage.getItem('nugabox.theme') || 'system';
+    apply(initial);
+
+    const order = ['system','light','dark'];
+    btn.addEventListener('click', () => {
+      const cur = localStorage.getItem('nugabox.theme') || 'system';
+      apply(order[(order.indexOf(cur)+1) % order.length]);
+    });
+  })();
+
+  // Remember ID
+  (function(){
+    const idInput = document.getElementById('loginId');
+    const remember = document.getElementById('rememberId');
+    const saved = localStorage.getItem('nugabox.savedId');
+    if(saved){ idInput.value = saved; remember.checked = true; }
+    document.getElementById('loginForm').addEventListener('submit', () => {
+      if(remember.checked) localStorage.setItem('nugabox.savedId', idInput.value);
+      else localStorage.removeItem('nugabox.savedId');
+    });
+  })();
+
+  // Form: simple submit feedback (no real auth)
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = this.querySelector('.btn-primary');
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '확인 중…';
+    setTimeout(()=>{
+      btn.textContent = '✓ 로그인 성공';
+      setTimeout(()=>{ btn.textContent = original; btn.disabled = false; }, 1400);
+    }, 700);
+  });
+</script>
+
+</body>
+</html>
