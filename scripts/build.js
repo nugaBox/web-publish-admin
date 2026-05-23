@@ -255,10 +255,10 @@ function extractSiiruCmsSectionContent(html, relPath) {
   return inner;
 }
 
-/** CMS 본문 추출 대상 페이지 여부 (sub/, boardpage/ 하위) */
+/** CMS 본문 추출 대상 페이지 여부 (admin/sub/, admin/boardpage/ 하위) */
 function isSiiruCmsPage(relPath) {
   const norm = relPath.split(path.sep).join('/');
-  return norm.startsWith('sub/') || norm.startsWith('boardpage/');
+  return norm.startsWith('admin/sub/') || norm.startsWith('admin/boardpage/');
 }
 
 /** 빌드 처리에서 제외할 HTML 파일 여부 */
@@ -305,7 +305,7 @@ for (const filePath of htmlFiles) {
 
 // siiru 전용: 조각·include 템플릿은 출력에서 제거
 if (skipLayout) {
-  for (const relDir of ['sub/_partials', 'include']) {
+  for (const relDir of ['admin/sub/_partials', 'admin/include']) {
     const dir = path.join(DIST, ...relDir.split('/'));
     if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true });
   }

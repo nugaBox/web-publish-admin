@@ -23,7 +23,9 @@ const BS_PORT = 3000;
 function htmlExtensionMiddleware(req, _res, next) {
   const raw = req.url || '/';
   const qIndex = raw.indexOf('?');
-  const pathname = (qIndex >= 0 ? raw.slice(0, qIndex) : raw).replace(/\/$/, '') || '/';
+  const rawPath = qIndex >= 0 ? raw.slice(0, qIndex) : raw;
+  const hasTrailingSlash = rawPath.endsWith('/') && rawPath !== '/';
+  const pathname = rawPath.replace(/\/$/, '') || '/';
   const query = qIndex >= 0 ? raw.slice(qIndex) : '';
 
   if (path.extname(pathname)) {
@@ -46,7 +48,14 @@ function htmlExtensionMiddleware(req, _res, next) {
 
   const asIndex = path.join(DIST, rel, 'index.html');
   if (fs.existsSync(asIndex)) {
-    req.url = '/' + rel + '/index.html' + query;
+    if (hasTrailingSlash) {
+      req.url = '/' + rel + '/index.html' + query;
+      next();
+    } else {
+      _res.writeHead(302, { Location: '/' + rel + '/' + query });
+      _res.end();
+    }
+    return;
   }
 
   next();

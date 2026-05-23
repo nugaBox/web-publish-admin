@@ -1,10 +1,74 @@
 /* ============================================================
-   main.js — 관리자 대시보드 전용 스크립트
+   admin.js — 관리자 공통 + 대시보드 스크립트
+   (script.js + main.js + sub.js 통합)
    ============================================================ */
 
-/* ── 페이지 내비게이션 ───────────────────────────────────── */
+/* ── data-include 로더 ──────────────────────────────────────── */
+document.addEventListener("DOMContentLoaded", () => {
+  const includes = document.querySelectorAll("[data-include]");
+  Promise.all(
+    [...includes].map((el) =>
+      fetch(el.dataset.include)
+        .then((res) => {
+          if (!res.ok) throw new Error(`${el.dataset.include} 로드 실패`);
+          return res.text();
+        })
+        .then((html) => { el.outerHTML = html; })
+        .catch((err) => console.warn(err))
+    )
+  );
+});
+
+/* ── 테마 토글 ──────────────────────────────────────────────── */
+const themeBtn  = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  if (themeIcon) themeIcon.className = t === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  try { localStorage.setItem('admin-theme', t); } catch (e) {}
+}
+themeBtn?.addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme') || 'light';
+  setTheme(cur === 'dark' ? 'light' : 'dark');
+});
+try {
+  const saved = localStorage.getItem('admin-theme');
+  if (saved) setTheme(saved);
+} catch (e) {}
+
+/* ── 사이드바 토글 ──────────────────────────────────────────── */
+const sb         = document.getElementById('sidebar');
+const sc         = document.getElementById('scrim');
+const appEl      = document.getElementById('adminApp') || document.querySelector('.app');
+const sideToggle = document.getElementById('sideToggle');
+
+sideToggle?.addEventListener('click', () => {
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    sb?.classList.add('open');
+    sc?.classList.add('show');
+  } else {
+    appEl?.classList.toggle('collapsed');
+  }
+});
+sc?.addEventListener('click', () => {
+  sb?.classList.remove('open');
+  sc?.classList.remove('show');
+});
+
+/* ── 현재 페이지 활성 네비 (서브 페이지용 <a> 링크) ─────────── */
+(function () {
+  const curPath = location.pathname;
+  document.querySelectorAll('.sidebar .nav-item').forEach(a => {
+    if (a.href && a.href.includes(curPath.split('/').pop())) {
+      a.classList.add('active');
+    }
+  });
+})();
+
+/* ── 대시보드 페이지 내비게이션 ─────────────────────────────── */
 const PAGES = {
-  dashboard: '대시보드',
+  dashboard: '관리자 홈',
   analytics: '통계 · 리포트',
   users:     '회원 관리',
   content:   '콘텐츠 관리',
@@ -24,8 +88,8 @@ function go(page) {
   if (link) link.classList.add('active');
   const crumb = document.getElementById('crumb');
   if (crumb) crumb.textContent = PAGES[page] || '';
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('scrim').classList.remove('show');
+  document.getElementById('sidebar')?.classList.remove('open');
+  document.getElementById('scrim')?.classList.remove('show');
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
@@ -34,25 +98,6 @@ document.querySelectorAll('.sidebar [data-page]').forEach(n => {
 });
 document.querySelectorAll('[data-go]').forEach(a => {
   a.addEventListener('click', e => { e.preventDefault(); go(a.dataset.go); });
-});
-
-/* ── 모바일 드로어 ────────────────────────────────────────── */
-const sb         = document.getElementById('sidebar');
-const sc         = document.getElementById('scrim');
-const appEl      = document.querySelector('.app');
-const sideToggle = document.getElementById('sideToggle');
-
-sideToggle?.addEventListener('click', () => {
-  if (window.matchMedia('(max-width: 768px)').matches) {
-    sb.classList.add('open');
-    sc.classList.add('show');
-  } else {
-    appEl.classList.toggle('collapsed');
-  }
-});
-sc.addEventListener('click', () => {
-  sb.classList.remove('open');
-  sc.classList.remove('show');
 });
 
 /* ── 세그먼트 토글 ────────────────────────────────────────── */
@@ -65,7 +110,7 @@ document.querySelectorAll('.seg').forEach(seg => {
   });
 });
 
-/* ── 회원 목록 생성 ───────────────────────────────────────── */
+/* ── 회원 목록 생성 ─────────────────────────────────────────── */
 const USERS = [
   { n: '박서연',   e: 'seoyeon@mail.com',       p: 'Pro',  r: '멤버',  l: '2분 전',    s: 'success', st: '활성',   d: '2026-05-12', c: '#eef3ff,#dbeafe,#1d4ed8' },
   { n: '정현우',   e: 'hyunwoo@studio.io',      p: 'Free', r: '멤버',  l: '12시간 전', s: 'warn',    st: '미인증', d: '2026-05-11', c: '#fee2e2,#fecaca,#b91c1c' },

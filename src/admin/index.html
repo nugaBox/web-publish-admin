@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>관리자 대시보드</title>
+  <title>홈페이지 관리자</title>
+  <link rel="icon" type="image/png" href="/admin/assets/images/admin_favicon.png">
 
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="assets/css/pretendard.css">
-  <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="/admin/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/admin/assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/admin/assets/css/pretendard.css">
+  <link rel="stylesheet" href="/admin/assets/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/admin/assets/css/admin.css">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
       <div class="nav-label">메인</div>
       <div class="nav-item active" data-page="dashboard">
         <span class="ic"><i class="fa-solid fa-table-cells-large"></i></span>
-        대시보드
+        관리자 홈
       </div>
       <div class="nav-item" data-page="analytics">
         <span class="ic"><i class="fa-solid fa-chart-line"></i></span>
@@ -99,12 +99,12 @@
 
       <header class="crumb-bar">
         <button class="toggle-side" id="sideToggle" title="사이드바 접기/펼치기">
-          <i class="fa-solid fa-table-columns"></i>
+          <i class="fa-solid fa-bars"></i>
         </button>
         <div class="crumbs">
           <span class="root">관리자</span>
           <span class="sep">/</span>
-          <span class="cur" id="crumb">대시보드</span>
+          <span class="cur" id="crumb">관리자 홈</span>
         </div>
         <div class="actions">
           <button class="icon-btn" id="notifBtn" title="알림">
@@ -124,7 +124,7 @@
         <section class="page show" id="page-dashboard">
           <div class="page-head">
             <div>
-              <h1 class="page-title">대시보드</h1>
+              <h1 class="page-title">관리자 홈</h1>
               <p class="page-sub">홈페이지 주요 현황입니다</p>
             </div>
             <div class="actions d-flex gap-2 flex-wrap">
@@ -911,9 +911,8 @@
   </div>
 </div>
 
-<script src="assets/js/chart.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/script.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="/admin/assets/js/chart.min.js"></script>
+<script src="/admin/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/admin/assets/js/admin.js"></script>
 </body>
 </html>
